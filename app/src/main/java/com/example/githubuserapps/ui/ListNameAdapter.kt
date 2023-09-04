@@ -1,5 +1,6 @@
 package com.example.githubuserapps.ui
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubuserapps.data.response.ItemsItem
 import com.example.githubuserapps.databinding.ItemCardBinding
+import com.squareup.picasso.Picasso
 
 class ListNameAdapter : ListAdapter<ItemsItem,ListNameAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
@@ -22,6 +24,7 @@ class ListNameAdapter : ListAdapter<ItemsItem,ListNameAdapter.MyViewHolder>(DIFF
     class MyViewHolder(val binding: ItemCardBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(review: ItemsItem){
             binding.itemText.text = "${review.login}"
+            Picasso.get().load(review.avatarUrl).into(binding.itemImage)
         }
     }
 

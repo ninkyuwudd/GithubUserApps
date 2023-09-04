@@ -35,10 +35,12 @@ class ActivitySearchMenu : AppCompatActivity() {
         setContentView(binding.root)
 
         with(binding){
-            svSearchView.setupWithSearchBar(svSearch)
             svSearchView.editText.setOnEditorActionListener {txtView,actionId,event ->
                 svSearch.text = svSearchView.text
+                svSearchView.setupWithSearchBar(svSearch)
                 svSearchView.hide()
+//                val bundle = Bundle()
+//                bundle.putString(MainViewModel.USERNAME_ACCOUNT, svSearchView.text.toString())
                 Toast.makeText(this@ActivitySearchMenu, svSearchView.text, Toast.LENGTH_SHORT).show()
                 false
             }
