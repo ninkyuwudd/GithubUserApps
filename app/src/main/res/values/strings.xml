@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GithubUserApps</string>
+    <string name="insert_username_search">Insert Username..</string>
+    <string name="testing_text_search">this is a serachbar activity</string>
+</resources>
