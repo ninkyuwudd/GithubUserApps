@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubuserapps.data.response.ItemsItem
@@ -32,6 +33,15 @@ class ActivitySearchMenu : AppCompatActivity() {
         setContentView(binding.root)
 
         val fromMainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        val mainViewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(
+            MainViewModel::class.java)
+        mainViewModel.listReview.observe(this){
+            username -> setReveiewNameData(username)
+        }
+        val layoutManager = LinearLayoutManager(this)
+        binding.rvUsername.layoutManager = layoutManager
+        val itemDecorator = DividerItemDecoration(this,layoutManager.orientation)
+        binding.rvUsername.addItemDecoration(itemDecorator)
 
         with(binding){
             svSearchView.setupWithSearchBar(svSearch)
@@ -39,24 +49,15 @@ class ActivitySearchMenu : AppCompatActivity() {
                 svSearch.text = svSearchView.text
 
                 svSearchView.hide()
-                val bundle = Bundle()
+
                 fromMainViewModel.findUsernameAccount(svSearchView.text.toString())
                 Toast.makeText(this@ActivitySearchMenu, svSearchView.text, Toast.LENGTH_SHORT).show()
+
+
+
                 false
             }
         }
-
-        val mainViewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(
-            MainViewModel::class.java)
-        mainViewModel.listReview.observe(this){
-            username -> setReveiewNameData(username)
-        }
-
-        val layoutManager = LinearLayoutManager(this)
-        binding.rvUsername.layoutManager = layoutManager
-        val itemDecorator = DividerItemDecoration(this,layoutManager.orientation)
-        binding.rvUsername.addItemDecoration(itemDecorator)
-
 
         mainViewModel.listReview.observe(this){
             usernameList -> setReveiewNameData(usernameList)

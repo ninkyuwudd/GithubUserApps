@@ -1,13 +1,17 @@
 package com.example.githubuserapps.ui
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.githubuserapps.ActivitySearchMenu
+import com.example.githubuserapps.DetailAccount
 import com.example.githubuserapps.data.response.ItemsItem
 import com.example.githubuserapps.databinding.ItemCardBinding
 import com.squareup.picasso.Picasso
@@ -20,6 +24,7 @@ class ListNameAdapter : ListAdapter<ItemsItem,ListNameAdapter.MyViewHolder>(DIFF
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(getItem(position))
+
     }
 
 
@@ -27,7 +32,15 @@ class ListNameAdapter : ListAdapter<ItemsItem,ListNameAdapter.MyViewHolder>(DIFF
         fun bind(review: ItemsItem){
             binding.itemText.text = "${review.login}"
             Picasso.get().load(review.avatarUrl).into(binding.itemImage)
+
             binding.itemCard.setOnClickListener{
+                val ctx = binding.root.context
+                Log.d("user","User : ${review.login}")
+
+                val intent = Intent(ctx,DetailAccount::class.java)
+                intent.putExtra(DetailAccount.EXTRA_TITLE,review.login )
+                ctx.startActivity(intent)
+
 
             }
         }
