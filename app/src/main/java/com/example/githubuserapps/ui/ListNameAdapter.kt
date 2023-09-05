@@ -1,8 +1,10 @@
 package com.example.githubuserapps.ui
 
+import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +27,9 @@ class ListNameAdapter : ListAdapter<ItemsItem,ListNameAdapter.MyViewHolder>(DIFF
         fun bind(review: ItemsItem){
             binding.itemText.text = "${review.login}"
             Picasso.get().load(review.avatarUrl).into(binding.itemImage)
+            binding.itemCard.setOnClickListener{
+
+            }
         }
     }
 

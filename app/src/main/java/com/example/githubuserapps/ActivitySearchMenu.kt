@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -23,24 +24,23 @@ import javax.security.auth.callback.Callback
 class ActivitySearchMenu : AppCompatActivity() {
 
     private lateinit var binding:ActivitySearchMenuBinding
-//
-//    companion object {
-//        private const val USER = "Username"
-//        private const val USERNAME_ACCOUNT = "sidiqpermana"
-//    }
+//    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val fromMainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
         with(binding){
+            svSearchView.setupWithSearchBar(svSearch)
             svSearchView.editText.setOnEditorActionListener {txtView,actionId,event ->
                 svSearch.text = svSearchView.text
-                svSearchView.setupWithSearchBar(svSearch)
+
                 svSearchView.hide()
-//                val bundle = Bundle()
-//                bundle.putString(MainViewModel.USERNAME_ACCOUNT, svSearchView.text.toString())
+                val bundle = Bundle()
+                fromMainViewModel.findUsernameAccount(svSearchView.text.toString())
                 Toast.makeText(this@ActivitySearchMenu, svSearchView.text, Toast.LENGTH_SHORT).show()
                 false
             }

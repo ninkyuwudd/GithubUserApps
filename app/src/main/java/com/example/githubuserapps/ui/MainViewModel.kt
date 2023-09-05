@@ -14,9 +14,6 @@ import retrofit2.Response
 
 class MainViewModel : ViewModel(){
 
-//    private val _githubusername = MutableLiveData<ItemsItem>()
-//    val githubusername : LiveData<ItemsItem> = _githubusername
-
     private  val _listUsername = MutableLiveData<List<ItemsItem>>()
     val listReview: LiveData<List<ItemsItem>> = _listUsername
 
@@ -25,16 +22,16 @@ class MainViewModel : ViewModel(){
 
     companion object {
         private const val USER = "Username"
-        private const val USERNAME_ACCOUNT = "fuadmuhammad"
+        var USERNAME_ACCOUNT = "gilang"
     }
 
     init {
-        findUsernameAccount()
+        findUsernameAccount(USERNAME_ACCOUNT)
     }
 
-    private fun findUsernameAccount(){
+    fun findUsernameAccount(data: String){
         _isloading.value = true
-        val client = ApiConfig.getApiService().getDataAccount(USERNAME_ACCOUNT)
+        val client = ApiConfig.getApiService().getDataAccount(data)
         client.enqueue(object  : retrofit2.Callback<UserAccountResponse>{
             override fun onResponse(
                 call: Call<UserAccountResponse>,
@@ -42,7 +39,7 @@ class MainViewModel : ViewModel(){
             ){
                 _isloading.value = false
                 if(response.isSuccessful){
-                        _listUsername.value = response.body()?.items
+                    _listUsername.value = response.body()?.items
 
                 }else{
                     Log.e(ContentValues.TAG,"onFilure ${response.message()}")
@@ -55,4 +52,32 @@ class MainViewModel : ViewModel(){
             }
         })
     }
+
+
+
+
+//    fun findUsernameAccount(){
+//        _isloading.value = true
+//        val client = ApiConfig.getApiService().getDataAccount(USERNAME_ACCOUNT)
+//        client.enqueue(object  : retrofit2.Callback<UserAccountResponse>{
+//            override fun onResponse(
+//                call: Call<UserAccountResponse>,
+//                response: Response<UserAccountResponse>
+//            ){
+//                _isloading.value = false
+//                if(response.isSuccessful){
+//                        _listUsername.value = response.body()?.items
+//
+//                }else{
+//                    Log.e(ContentValues.TAG,"onFilure ${response.message()}")
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<UserAccountResponse>, t: Throwable){
+//                _isloading.value = false
+//                Log.e(ContentValues.TAG, "onFailure: ${t.message}")
+//            }
+//        })
+//    }
+
 }
