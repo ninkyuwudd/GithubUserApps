@@ -1,17 +1,22 @@
 package com.example.githubuserapps.ui
 
 import android.content.ContentValues
+import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.githubuserapps.DetailAccount
 import com.example.githubuserapps.data.response.DetailUserResponse
 import com.example.githubuserapps.data.response.UserAccountResponse
 import com.example.githubuserapps.data.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Response
 
-class DetailViewModel : ViewModel() {
+class DetailViewModel: ViewModel() {
+
+
+//
 
     private val _detailDataAccount = MutableLiveData<DetailUserResponse>()
     val DetailDataAccount : LiveData<DetailUserResponse> = _detailDataAccount
@@ -19,13 +24,10 @@ class DetailViewModel : ViewModel() {
     private val _isloading = MutableLiveData<Boolean>()
     val isloading: LiveData<Boolean> = _isloading
 
-    companion object {
-        var USERNAME_DETAIL_ACCOUNT = "gilang"
-    }
-
-    init {
-        findDetailUsernameAccount(USERNAME_DETAIL_ACCOUNT)
-    }
+//    init {
+//
+//        findDetailUsernameAccount("username")
+//    }
 
     fun findDetailUsernameAccount(data:String){
         _isloading.value = true

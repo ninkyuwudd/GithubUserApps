@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.githubuserapps.ActivitySearchMenu
 import com.example.githubuserapps.data.response.ItemsItem
 import com.example.githubuserapps.data.response.UserAccountResponse
@@ -19,6 +20,7 @@ class MainViewModel : ViewModel(){
 
     private val _isloading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isloading
+
 
     companion object {
         private const val USER = "Username"

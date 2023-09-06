@@ -32,16 +32,13 @@ class ActivitySearchMenu : AppCompatActivity() {
         binding = ActivitySearchMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val fromMainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        val mainViewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(
-            MainViewModel::class.java)
-        mainViewModel.listReview.observe(this){
-            username -> setReveiewNameData(username)
-        }
         val layoutManager = LinearLayoutManager(this)
         binding.rvUsername.layoutManager = layoutManager
+
         val itemDecorator = DividerItemDecoration(this,layoutManager.orientation)
         binding.rvUsername.addItemDecoration(itemDecorator)
+
+        val fromMainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         with(binding){
             svSearchView.setupWithSearchBar(svSearch)
@@ -53,10 +50,18 @@ class ActivitySearchMenu : AppCompatActivity() {
                 fromMainViewModel.findUsernameAccount(svSearchView.text.toString())
                 Toast.makeText(this@ActivitySearchMenu, svSearchView.text, Toast.LENGTH_SHORT).show()
 
-
-
                 false
             }
+        }
+
+
+        val mainViewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(
+            MainViewModel::class.java)
+
+
+
+        mainViewModel.listReview.observe(this){
+            username -> setReveiewNameData(username)
         }
 
         mainViewModel.listReview.observe(this){
@@ -71,7 +76,8 @@ class ActivitySearchMenu : AppCompatActivity() {
 
 
     private fun setReveiewNameData(usernameData:List<ItemsItem>){
-        val adapter = ListNameAdapter()
+        val adapter =ListNameAdapter()
+
         adapter.submitList(usernameData)
         binding.rvUsername.adapter = adapter
 //        binding.
