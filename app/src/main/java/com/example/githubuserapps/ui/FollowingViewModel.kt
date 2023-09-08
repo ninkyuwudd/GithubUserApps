@@ -25,7 +25,7 @@ class FollowingViewModel: ViewModel() {
 
     fun fetchUsernameFollowingData(data: String){
         _isloading.value = true
-        val client = ApiConfig.getApiService().getFollowersUserAccountData(data)
+        val client = ApiConfig.getApiService().getFollowingUserAccountData(data)
         client.enqueue(object  : retrofit2.Callback<List<UserFollowersResponseItem>>{
 
             override fun onResponse(

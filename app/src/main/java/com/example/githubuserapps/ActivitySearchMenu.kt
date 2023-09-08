@@ -25,6 +25,7 @@ import javax.security.auth.callback.Callback
 class ActivitySearchMenu : AppCompatActivity() {
 
     private lateinit var binding:ActivitySearchMenuBinding
+    private lateinit var listNameAdapter: ListNameAdapter
 //    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +38,8 @@ class ActivitySearchMenu : AppCompatActivity() {
 
         val itemDecorator = DividerItemDecoration(this,layoutManager.orientation)
         binding.rvUsername.addItemDecoration(itemDecorator)
+        listNameAdapter = ListNameAdapter()
+        binding.rvUsername.adapter = listNameAdapter
 
         val fromMainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
