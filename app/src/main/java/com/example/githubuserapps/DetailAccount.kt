@@ -54,11 +54,11 @@ class DetailAccount: AppCompatActivity() {
         supportActionBar?.elevation = 0f
 
 
+
         val fromDetailViewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         val detailViewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(
             DetailViewModel::class.java
         )
-
 
         fromDetailViewModel.findDetailUsernameAccount(getName.toString())
 
@@ -72,6 +72,10 @@ class DetailAccount: AppCompatActivity() {
     }
 
     private fun setReviewNameData(usernameData:DetailUserResponse){
+        val followersViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+            FollowViewModel::class.java)
+
+        followersViewModel.setUsernameDataGet(usernameData.login.toString())
         binding.titleDetail.text = usernameData.name
         binding.tvUsername.text = usernameData.login
         Picasso.get().load(usernameData.avatarUrl).into(binding.profileImage)

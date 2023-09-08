@@ -53,7 +53,7 @@ class FollowFragment() : Fragment() {
         val followersViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
             FollowViewModel::class.java)
 
-        followersViewModel.setUsernameDataGet(data.toString())
+//        followersViewModel.setUsernameDataGet(data.toString())
 
 
         followersViewModel.listFollow.observe(viewLifecycleOwner){
@@ -65,7 +65,7 @@ class FollowFragment() : Fragment() {
             showLoading(it)
         }
 
-//        followersViewModel.findUsernameFollowAccount("gilang")
+
     }
 
     private fun setReveiewNameData(usernameData: List<UserFollowersResponseItem>){

@@ -41,6 +41,8 @@ class ListNameAdapter : ListAdapter<ItemsItem,ListNameAdapter.MyViewHolder>(DIFF
             binding.itemCard.setOnClickListener{
                 val ctx = binding.root.context
 
+
+
                 val intent = Intent(ctx,DetailAccount::class.java)
                 intent.putExtra(DetailAccount.EXTRA_TITLE,review.login)
                 ctx.startActivity(intent)

@@ -5,34 +5,25 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-
-import com.example.githubuserapps.data.response.UserAccountResponse
-import com.example.githubuserapps.data.response.UserFollowersResponse
 import com.example.githubuserapps.data.response.UserFollowersResponseItem
 import com.example.githubuserapps.data.retrofit.ApiConfig
 import retrofit2.Call
-
 import retrofit2.Response
 
-class FollowViewModel: ViewModel() {
+class FollowingViewModel: ViewModel() {
 
-    private val _listFollowUser = MutableLiveData<List<UserFollowersResponseItem>>()
-    val listFollow: LiveData<List<UserFollowersResponseItem>> = _listFollowUser
+    private  val _listFollowingUserData = MutableLiveData<List<UserFollowersResponseItem>>()
+    val listFollowingUserData : LiveData<List<UserFollowersResponseItem>> = _listFollowingUserData
 
     private val _isloading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isloading
 
-    private var usernameData: String = "gizipp"
-
-    fun setUsernameDataGet(getUsername:String){
-        usernameData = getUsername
-    }
-
     init {
-        findUsernameFollowAccount(usernameData)
+        fetchUsernameFollowingData("gizipp")
     }
 
-    fun findUsernameFollowAccount(data: String){
+
+    fun fetchUsernameFollowingData(data: String){
         _isloading.value = true
         val client = ApiConfig.getApiService().getFollowersUserAccountData(data)
         client.enqueue(object  : retrofit2.Callback<List<UserFollowersResponseItem>>{
@@ -43,7 +34,7 @@ class FollowViewModel: ViewModel() {
             ) {
                 _isloading.value = false
                 if(response.isSuccessful){
-                    _listFollowUser.value = response.body()
+                    _listFollowingUserData.value = response.body()
                 }
             }
 
@@ -53,4 +44,8 @@ class FollowViewModel: ViewModel() {
             }
         })
     }
+
+
+
+
 }
