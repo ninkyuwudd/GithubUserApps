@@ -11,6 +11,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.githubuserapps.data.response.DetailUserResponse
 import com.example.githubuserapps.databinding.ActivityDetailAccountBinding
 import com.example.githubuserapps.ui.DetailViewModel
+import com.example.githubuserapps.ui.FollowViewModel
+import com.example.githubuserapps.ui.MainViewModel
 import com.example.githubuserapps.ui.SectionPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -37,14 +39,13 @@ class DetailAccount: AppCompatActivity() {
         setContentView(binding.root)
 
         val getName = intent.getStringExtra(EXTRA_TITLE)
-//
-//        txt = findViewById(R.id.titleDetail)
-//        txt.text = getName
 
+        val sectionPagerAdapter = SectionPagerAdapter(this,getName.toString())
 
-        val sectionPagerAdapter = SectionPagerAdapter(this)
         val viewPager: ViewPager2 = findViewById(R.id.view_pager)
+
         viewPager.adapter = sectionPagerAdapter
+
         val tabs: TabLayout = findViewById(R.id.tabs)
         TabLayoutMediator(tabs,viewPager) {
             tab,position -> tab.text = resources.getString(TAB_TITLE[position])
@@ -57,6 +58,7 @@ class DetailAccount: AppCompatActivity() {
         val detailViewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(
             DetailViewModel::class.java
         )
+
 
         fromDetailViewModel.findDetailUsernameAccount(getName.toString())
 

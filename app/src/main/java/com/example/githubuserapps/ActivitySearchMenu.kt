@@ -64,10 +64,6 @@ class ActivitySearchMenu : AppCompatActivity() {
             username -> setReveiewNameData(username)
         }
 
-        mainViewModel.listReview.observe(this){
-            usernameList -> setReveiewNameData(usernameList)
-        }
-
         mainViewModel.isLoading.observe(this){
             showLoading(it)
         }
@@ -77,10 +73,9 @@ class ActivitySearchMenu : AppCompatActivity() {
 
     private fun setReveiewNameData(usernameData:List<ItemsItem>){
         val adapter =ListNameAdapter()
-
         adapter.submitList(usernameData)
         binding.rvUsername.adapter = adapter
-//        binding.
+//
     }
 
 

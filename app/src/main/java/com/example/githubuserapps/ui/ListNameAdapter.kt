@@ -15,6 +15,7 @@ import com.example.githubuserapps.ActivitySearchMenu
 import com.example.githubuserapps.DetailAccount
 import com.example.githubuserapps.data.response.ItemsItem
 import com.example.githubuserapps.databinding.ItemCardBinding
+import com.example.githubuserapps.fragment.FollowFragment
 import com.squareup.picasso.Picasso
 
 class ListNameAdapter : ListAdapter<ItemsItem,ListNameAdapter.MyViewHolder>(DIFF_CALLBACK) {
@@ -31,18 +32,15 @@ class ListNameAdapter : ListAdapter<ItemsItem,ListNameAdapter.MyViewHolder>(DIFF
     }
 
 
-
     class MyViewHolder(val binding: ItemCardBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(review: ItemsItem){
-
 
             binding.itemText.text = "${review.login}"
             Picasso.get().load(review.avatarUrl).into(binding.itemImage)
 
             binding.itemCard.setOnClickListener{
                 val ctx = binding.root.context
-//                val viewModel = ViewModelProvider(ctx as ActivitySearchMenu ).get(DetailViewModel::class.java)
-//                viewModel.setData(review.login)
+
                 val intent = Intent(ctx,DetailAccount::class.java)
                 intent.putExtra(DetailAccount.EXTRA_TITLE,review.login)
                 ctx.startActivity(intent)
