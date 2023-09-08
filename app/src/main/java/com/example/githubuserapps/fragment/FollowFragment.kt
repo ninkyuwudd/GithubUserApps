@@ -57,6 +57,7 @@ class FollowFragment() : Fragment() {
         val followersViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
             FollowViewModel::class.java)
 
+        showLoading(true)
         followersViewModel.findUsernameFollowAccount(usrLogin)
 
 

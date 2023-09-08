@@ -10,6 +10,7 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.githubuserapps.DetailAccount
 import com.example.githubuserapps.R
 import com.example.githubuserapps.data.response.UserFollowersResponseItem
 import com.example.githubuserapps.databinding.FragmentFollowBinding
@@ -36,6 +37,8 @@ class FollowingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val data = arguments
+        val usrLogin:String = data?.getString(DetailAccount.EXTRA_TITLE).toString()
 
         recyclerView = binding.rvFollowing
         followingAdapter = FollowingAdapter()
@@ -48,6 +51,8 @@ class FollowingFragment : Fragment() {
 
         val followingViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
             FollowingViewModel::class.java)
+
+        followingViewModel.fetchUsernameFollowingData(usrLogin)
 
         followingViewModel.listFollowingUserData.observe(viewLifecycleOwner){
                 username -> setFollowingNameData(username)
