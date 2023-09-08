@@ -33,16 +33,15 @@ class ListNameAdapter : ListAdapter<ItemsItem,ListNameAdapter.MyViewHolder>(DIFF
 
 
     class MyViewHolder(val binding: ItemCardBinding) : RecyclerView.ViewHolder(binding.root) {
+
         fun bind(review: ItemsItem){
+            val ctx = binding.root.context
+
 
             binding.itemText.text = "${review.login}"
             Picasso.get().load(review.avatarUrl).into(binding.itemImage)
 
             binding.itemCard.setOnClickListener{
-                val ctx = binding.root.context
-
-
-
                 val intent = Intent(ctx,DetailAccount::class.java)
                 intent.putExtra(DetailAccount.EXTRA_TITLE,review.login)
                 ctx.startActivity(intent)

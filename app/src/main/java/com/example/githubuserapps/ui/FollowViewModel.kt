@@ -22,15 +22,15 @@ class FollowViewModel: ViewModel() {
     private val _isloading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isloading
 
-    private var usernameData: String = "gizipp"
-
-    fun setUsernameDataGet(getUsername:String){
-        usernameData = getUsername
-    }
-
-    init {
-        findUsernameFollowAccount(usernameData)
-    }
+//    private var usernameData: String = "gizipp"
+//
+//    fun setUsernameDataGet(getUsername:String){
+//        usernameData = getUsername
+//    }
+//
+//    init {
+//        findUsernameFollowAccount(usernameData)
+//    }
 
     fun findUsernameFollowAccount(data: String){
         _isloading.value = true

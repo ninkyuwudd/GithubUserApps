@@ -18,9 +18,9 @@ class FollowingViewModel: ViewModel() {
     private val _isloading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isloading
 
-    init {
-        fetchUsernameFollowingData("gizipp")
-    }
+//    init {
+//        fetchUsernameFollowingData("gizipp")
+//    }
 
 
     fun fetchUsernameFollowingData(data: String){

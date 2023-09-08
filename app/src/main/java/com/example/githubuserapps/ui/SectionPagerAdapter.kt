@@ -8,7 +8,15 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.githubuserapps.fragment.FollowFragment
 import com.example.githubuserapps.fragment.FollowingFragment
 
-class SectionPagerAdapter(Activity: AppCompatActivity,private val username :String):FragmentStateAdapter(Activity) {
+class SectionPagerAdapter(Activity: AppCompatActivity,data:Bundle):FragmentStateAdapter(Activity) {
+
+    private var fgBundle: Bundle
+
+    init {
+        fgBundle = data
+    }
+
+
     override fun getItemCount(): Int {
         return 2
     }
@@ -18,11 +26,10 @@ class SectionPagerAdapter(Activity: AppCompatActivity,private val username :Stri
         when (position) {
             0 -> {
                 fragment = FollowFragment()
-                val bundle = Bundle()
-                bundle.putString("username",username)
             }
             1 -> fragment = FollowingFragment()
         }
+        fragment?.arguments = this.fgBundle
         return fragment as Fragment
     }
 }

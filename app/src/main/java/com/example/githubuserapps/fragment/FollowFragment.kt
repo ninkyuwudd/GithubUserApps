@@ -10,6 +10,7 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.githubuserapps.DetailAccount
 import com.example.githubuserapps.R
 import com.example.githubuserapps.data.response.UserFollowersResponse
 import com.example.githubuserapps.data.response.UserFollowersResponseItem
@@ -39,6 +40,11 @@ class FollowFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val data = arguments
+        val usrLogin:String = data?.getString(DetailAccount.EXTRA_TITLE).toString()
+
+        binding = FragmentFollowBinding.bind(view)
         recyclerView = binding.rvFollow
         followersAdapter = FollowAdapter()
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
@@ -47,13 +53,11 @@ class FollowFragment() : Fragment() {
         val itemDecorator = DividerItemDecoration(context,LinearLayoutManager(context).orientation)
         recyclerView.addItemDecoration(itemDecorator)
 
-        val data = arguments?.getString("username")
-
 
         val followersViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
             FollowViewModel::class.java)
 
-//        followersViewModel.setUsernameDataGet(data.toString())
+        followersViewModel.findUsernameFollowAccount(usrLogin)
 
 
         followersViewModel.listFollow.observe(viewLifecycleOwner){
@@ -67,6 +71,11 @@ class FollowFragment() : Fragment() {
 
 
     }
+
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        binding = null
+//    }
 
     private fun setReveiewNameData(usernameData: List<UserFollowersResponseItem>){
         val adapter = FollowAdapter()

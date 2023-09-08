@@ -25,6 +25,7 @@ class FollowingAdapter:ListAdapter<UserFollowersResponseItem, FollowingAdapter.M
     }
     class MyFollowingHolder(val binding:ItemCardBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(following: UserFollowersResponseItem){
+
             binding.itemText.text = following.login
             Picasso.get().load(following.avatarUrl).into(binding.itemImage)
         }

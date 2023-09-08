@@ -40,7 +40,10 @@ class DetailAccount: AppCompatActivity() {
 
         val getName = intent.getStringExtra(EXTRA_TITLE)
 
-        val sectionPagerAdapter = SectionPagerAdapter(this,getName.toString())
+        val bundle = Bundle()
+        bundle.putString(EXTRA_TITLE,getName)
+
+        val sectionPagerAdapter = SectionPagerAdapter(this,bundle)
 
         val viewPager: ViewPager2 = findViewById(R.id.view_pager)
 
@@ -72,10 +75,6 @@ class DetailAccount: AppCompatActivity() {
     }
 
     private fun setReviewNameData(usernameData:DetailUserResponse){
-        val followersViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-            FollowViewModel::class.java)
-
-        followersViewModel.setUsernameDataGet(usernameData.login.toString())
         binding.titleDetail.text = usernameData.name
         binding.tvUsername.text = usernameData.login
         Picasso.get().load(usernameData.avatarUrl).into(binding.profileImage)
