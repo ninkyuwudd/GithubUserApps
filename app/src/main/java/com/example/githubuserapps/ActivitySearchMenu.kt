@@ -45,20 +45,18 @@ class ActivitySearchMenu : AppCompatActivity() {
         val mainViewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(
             MainViewModel::class.java)
 
+
         with(binding){
             svSearchView.setupWithSearchBar(svSearch)
-            svSearchView.editText.setOnEditorActionListener {txtView,actionId,event ->
+            svSearchView.editText.setOnClickListener{
                 showLoading(true)
                 svSearch.text = svSearchView.text
 
                 svSearchView.hide()
 
-//                fromMainViewModel.findUsernameAccount(svSearchView.text.toString())
                 mainViewModel.findUsernameAccount(svSearchView.text.toString())
-
-
-                false
             }
+
         }
 
 
@@ -82,8 +80,6 @@ class ActivitySearchMenu : AppCompatActivity() {
         binding.rvUsername.adapter = adapter
 //
     }
-
-
 
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
