@@ -46,6 +46,7 @@ class ActivitySearchMenu : AppCompatActivity() {
         with(binding){
             svSearchView.setupWithSearchBar(svSearch)
             svSearchView.editText.setOnEditorActionListener {txtView,actionId,event ->
+                showLoading(true)
                 svSearch.text = svSearchView.text
 
                 svSearchView.hide()
@@ -61,7 +62,7 @@ class ActivitySearchMenu : AppCompatActivity() {
         val mainViewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(
             MainViewModel::class.java)
 
-
+        mainViewModel.findUsernameAccount("gilang")
 
         mainViewModel.listReview.observe(this){
             username -> setReveiewNameData(username)

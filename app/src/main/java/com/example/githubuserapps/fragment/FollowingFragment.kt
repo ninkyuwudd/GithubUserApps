@@ -24,15 +24,17 @@ class FollowingFragment : Fragment() {
 
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var binding: FragmentFollowingBinding
+    private var _binding: FragmentFollowingBinding? = null
     private lateinit var followingAdapter: FollowingAdapter
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFollowingBinding.inflate(inflater, container, false)
+        _binding = FragmentFollowingBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
-        return binding.root
+        val view = binding.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -63,6 +65,12 @@ class FollowingFragment : Fragment() {
             showLoading(it)
         }
 
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+       _binding = null
     }
 
     private fun setFollowingNameData(usernameData: List<UserFollowersResponseItem>){

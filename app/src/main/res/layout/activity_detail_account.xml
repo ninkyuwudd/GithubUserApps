@@ -9,17 +9,17 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
         app:cardCornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
 
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.06999999">
 
         <ImageView
             android:id="@+id/profileImage"
@@ -34,26 +34,28 @@
         android:id="@+id/titleDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginEnd="177dp"
         android:layout_marginBottom="473dp"
         android:text="TextView"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView2"
+        app:layout_constraintVertical_bias="0.133" />
 
     <TextView
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleDetail"
-        app:layout_constraintVertical_bias="0.025" />
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toEndOf="@+id/cardView2"
+        app:layout_constraintTop_toTopOf="@+id/cardView2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
@@ -64,8 +66,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUsername"
-        app:layout_constraintVertical_bias="0.060000002"
+        app:layout_constraintVertical_bias="0.31"
         app:tabTextColor="@android:color/white" />
+
+
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
@@ -84,7 +88,130 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.26999998"
         tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/title_followers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="8dp"
+
+        android:text="@string/followers_title"
+
+
+        app:layout_constraintBottom_toBottomOf="@+id/followers_count"
+        app:layout_constraintStart_toEndOf="@+id/followers_count"
+        app:layout_constraintTop_toTopOf="@+id/followers_count"
+        app:layout_constraintVertical_bias="0.142" />
+
+    <TextView
+        android:id="@+id/following_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="999"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tabs"
+        app:layout_constraintStart_toEndOf="@+id/title_followers"
+        app:layout_constraintTop_toTopOf="@+id/title_followers"
+        app:layout_constraintVertical_bias="0.004" />
+
+    <TextView
+        android:id="@+id/followers_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="999"
+
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView2"
+        app:layout_constraintStart_toStartOf="@+id/tvUsername"
+        app:layout_constraintTop_toBottomOf="@+id/tvUsername"
+        app:layout_constraintVertical_bias="0.134" />
+
+    <TextView
+        android:id="@+id/title_following"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/following_title"
+        app:layout_constraintBottom_toTopOf="@+id/tabs"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/following_count"
+        app:layout_constraintTop_toTopOf="@+id/following_count"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/company_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/tabs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/titleDetail"
+        app:layout_constraintTop_toBottomOf="@+id/titleDetail"
+        app:layout_constraintVertical_bias="0.115" />
+
+    <TextView
+        android:id="@+id/location_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/tabs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/company_value"
+        app:layout_constraintTop_toBottomOf="@+id/company_value"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/repos_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="999"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView2"
+        app:layout_constraintStart_toStartOf="@+id/tvUsername"
+        app:layout_constraintTop_toBottomOf="@+id/followers_count" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/gits_title"
+        app:layout_constraintBottom_toBottomOf="@+id/gits_count"
+        app:layout_constraintStart_toEndOf="@+id/gits_count"
+        app:layout_constraintTop_toTopOf="@+id/gits_count" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/repo_title"
+        app:layout_constraintBottom_toBottomOf="@+id/repos_count"
+        app:layout_constraintStart_toEndOf="@+id/repos_count"
+        app:layout_constraintTop_toTopOf="@+id/repos_count" />
+
+    <TextView
+        android:id="@+id/gits_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="999"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintStart_toStartOf="@+id/following_count"
+        app:layout_constraintTop_toTopOf="@+id/textView10" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

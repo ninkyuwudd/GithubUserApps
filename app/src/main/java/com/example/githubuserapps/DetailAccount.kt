@@ -77,6 +77,12 @@ class DetailAccount: AppCompatActivity() {
     private fun setReviewNameData(usernameData:DetailUserResponse){
         binding.titleDetail.text = usernameData.name
         binding.tvUsername.text = usernameData.login
+        binding.companyValue.text = usernameData.company
+        binding.locationValue.text = usernameData.location
+        binding.gitsCount.text = usernameData.publicGists.toString()
+        binding.reposCount.text = usernameData.publicRepos.toString()
+        binding.followersCount.text = usernameData.followers.toString()
+        binding.followingCount.text = usernameData.following.toString()
         Picasso.get().load(usernameData.avatarUrl).into(binding.profileImage)
 
     }

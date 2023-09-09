@@ -22,14 +22,14 @@ class MainViewModel : ViewModel(){
     val isLoading: LiveData<Boolean> = _isloading
 
 
-    companion object {
-        private const val USER = "Username"
-        var USERNAME_ACCOUNT = "gilang"
-    }
-
-    init {
-        findUsernameAccount(USERNAME_ACCOUNT)
-    }
+//    companion object {
+//        private const val USER = "Username"
+//        var USERNAME_ACCOUNT = "gilang"
+//    }
+//
+//    init {
+//        findUsernameAccount(USERNAME_ACCOUNT)
+//    }
 
     fun findUsernameAccount(data: String){
         _isloading.value = true
