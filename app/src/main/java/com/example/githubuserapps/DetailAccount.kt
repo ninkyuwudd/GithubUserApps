@@ -3,6 +3,7 @@ package com.example.githubuserapps
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModelProvider
@@ -18,9 +19,10 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.squareup.picasso.Picasso
 
-class DetailAccount: AppCompatActivity() {
+class DetailAccount: AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding:ActivityDetailAccountBinding
+    private lateinit var backbtn : ImageView
 
     companion object {
         const val EXTRA_TITLE = "gizipp"
@@ -55,6 +57,8 @@ class DetailAccount: AppCompatActivity() {
         }.attach()
 
         supportActionBar?.elevation = 0f
+
+        binding.bckBtn.setOnClickListener(this)
 
 
 
@@ -93,6 +97,14 @@ class DetailAccount: AppCompatActivity() {
             binding.progressBar.visibility = View.VISIBLE
         } else {
             binding.progressBar.visibility = View.GONE
+        }
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.bck_btn -> {
+                onBackPressed()
+            }
         }
     }
 

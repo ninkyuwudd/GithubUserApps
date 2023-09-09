@@ -42,6 +42,8 @@ class ActivitySearchMenu : AppCompatActivity() {
         binding.rvUsername.adapter = listNameAdapter
 
         val fromMainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        val mainViewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(
+            MainViewModel::class.java)
 
         with(binding){
             svSearchView.setupWithSearchBar(svSearch)
@@ -51,16 +53,15 @@ class ActivitySearchMenu : AppCompatActivity() {
 
                 svSearchView.hide()
 
-                fromMainViewModel.findUsernameAccount(svSearchView.text.toString())
-                Toast.makeText(this@ActivitySearchMenu, svSearchView.text, Toast.LENGTH_SHORT).show()
+//                fromMainViewModel.findUsernameAccount(svSearchView.text.toString())
+                mainViewModel.findUsernameAccount(svSearchView.text.toString())
+
 
                 false
             }
         }
 
 
-        val mainViewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(
-            MainViewModel::class.java)
 
         mainViewModel.findUsernameAccount("gilang")
 
