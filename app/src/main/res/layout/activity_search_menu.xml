@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ActivitySearchMenu">
 
+
+
     <com.google.android.material.search.SearchBar
         android:id="@+id/svSearch"
         android:layout_width="0dp"

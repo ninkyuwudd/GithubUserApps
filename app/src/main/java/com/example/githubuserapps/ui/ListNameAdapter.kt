@@ -20,15 +20,13 @@ import com.squareup.picasso.Picasso
 
 class ListNameAdapter : ListAdapter<ItemsItem,ListNameAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
+
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(getItem(position))
-
     }
 
 
@@ -36,7 +34,6 @@ class ListNameAdapter : ListAdapter<ItemsItem,ListNameAdapter.MyViewHolder>(DIFF
 
         fun bind(review: ItemsItem){
             val ctx = binding.root.context
-
 
             binding.itemText.text = "${review.login}"
             Picasso.get().load(review.avatarUrl).into(binding.itemImage)

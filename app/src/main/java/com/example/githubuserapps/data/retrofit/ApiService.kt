@@ -19,6 +19,7 @@ interface ApiService {
         @Query("q")q:String
     ): Call<UserAccountResponse>
 
+    //users/value
     @GET("users/{username}")
 //    @Headers("Authorization: token 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")
     fun getDetailUserAccount(

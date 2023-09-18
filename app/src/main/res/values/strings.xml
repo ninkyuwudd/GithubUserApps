@@ -12,4 +12,6 @@
     <string name="followers_title">Followers</string>
     <string name="repo_title">Repo</string>
     <string name="gits_title">Gits</string>
+    <string name="menu_settings">menu_settings</string>
+    <string name="menu_love">menu_love</string>
 </resources>
