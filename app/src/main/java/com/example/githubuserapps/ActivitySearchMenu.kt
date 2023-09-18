@@ -47,6 +47,10 @@ class ActivitySearchMenu : AppCompatActivity() {
 
 
         with(binding){
+            svSearch.inflateMenu(R.menu.menut_top_option)
+            svSearch.setOnMenuItemClickListener {
+                itemMenu -> true
+            }
             svSearchView.setupWithSearchBar(svSearch)
             svSearchView.editText.setOnClickListener{
                 showLoading(true)
