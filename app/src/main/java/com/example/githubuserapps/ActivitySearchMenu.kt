@@ -1,6 +1,7 @@
 package com.example.githubuserapps
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,7 @@ import com.example.githubuserapps.data.retrofit.ApiConfig
 import com.example.githubuserapps.databinding.ActivitySearchMenuBinding
 import com.example.githubuserapps.ui.ListNameAdapter
 import com.example.githubuserapps.ui.MainViewModel
+import com.example.githubuserapps.ui.page.LovedListActivity
 import retrofit2.Call
 import retrofit2.Response
 import javax.security.auth.callback.Callback
@@ -48,6 +50,14 @@ class ActivitySearchMenu : AppCompatActivity() {
 
         with(binding){
             svSearch.inflateMenu(R.menu.menut_top_option)
+            val srcMenu = svSearch.menu
+            val lovedMenuItem = srcMenu.findItem(R.id.item_love)
+            lovedMenuItem.setOnMenuItemClickListener {
+                val itn = Intent(this@ActivitySearchMenu,LovedListActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(itn)
+                true
+            }
             svSearch.setOnMenuItemClickListener {
                 itemMenu -> true
             }
@@ -62,6 +72,14 @@ class ActivitySearchMenu : AppCompatActivity() {
             }
 
         }
+
+
+
+
+
+
+
+
 
 
 

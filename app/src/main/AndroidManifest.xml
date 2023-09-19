@@ -15,6 +15,9 @@
         android:theme="@style/Theme.GithubUserApps"
         tools:targetApi="31">
         <activity
+            android:name=".ui.page.LovedListActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailAccount"
             android:exported="false" />
         <activity
