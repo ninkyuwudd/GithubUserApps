@@ -1,9 +1,12 @@
 package com.example.githubuserapps.ui.page
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.githubuserapps.DetailAccount
 import com.example.githubuserapps.database.Loved
 import com.example.githubuserapps.databinding.ItemCardBinding
 import com.example.githubuserapps.helper.LovedDiffCallback
@@ -36,9 +39,17 @@ class LovedAdapter: RecyclerView.Adapter<LovedAdapter.LovedViewHolder>() {
     }
     class LovedViewHolder(private val binding: ItemCardBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(loved: Loved) {
+            val ctx = binding.root.context
             with(binding) {
                 itemText.text = loved.account_username
                 Picasso.get().load(loved.avatarImgUrl).into(binding.itemImage)
+                itemCard.setOnClickListener {
+                    val intent = Intent(ctx, DetailAccount::class.java)
+                    intent.putExtra(DetailAccount.EXTRA_TITLE,loved.account_username)
+                    intent.putExtra(DetailAccount.EXTRA_IMG_ACCOUNT,loved.avatarImgUrl)
+                    intent.putExtra(DetailAccount.EXTRA_NOTE,loved)
+                    ctx.startActivity(intent)
+                }
             }
         }
     }

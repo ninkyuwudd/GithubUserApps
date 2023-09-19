@@ -2,6 +2,7 @@ package com.example.githubuserapps
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -96,6 +97,7 @@ class DetailAccount: AppCompatActivity(), View.OnClickListener {
         lovedAddUpdateViewModel = obtainViewModel(this@DetailAccount)
 
         loved = intent.getParcelableExtra(EXTRA_NOTE)
+
         if (loved != null) {
             isEdit = true
         } else {
@@ -104,25 +106,19 @@ class DetailAccount: AppCompatActivity(), View.OnClickListener {
 
         val actionBarTitle: String
         val btnTitle: String
-//
-//
-//        if (isEdit) {
-//            actionBarTitle = getString(R.string.change)
-//            btnTitle = getString(R.string.update)
-//            if (note != null) {
-//                note?.let { note ->
-//                    binding?.edtTitle?.setText(note.title)
-//                    binding?.edtDescription?.setText(note.description)
-//                }
-//            }
-//        } else {
-//            actionBarTitle = getString(R.string.add)
-//            btnTitle = getString(R.string.save)
-//        }
+
+
+        if (isEdit) {
+            binding.floatingLove.setImageResource(R.drawable.ic_favorite_fill)
+        } else {
+            binding.floatingLove.setImageResource(R.drawable.ic_favorite_border)
+        }
+
 
 
         binding.floatingLove.setOnClickListener{
             val name = getName
+
             val urlImg = getUrlImg
 
 
@@ -131,8 +127,8 @@ class DetailAccount: AppCompatActivity(), View.OnClickListener {
                         love.avatarImgUrl = urlImg
                     }
                     if (isEdit) {
-                        lovedAddUpdateViewModel.update(loved as Loved)
-                        showToast("edited")
+                        lovedAddUpdateViewModel.delete(loved as Loved)
+                        showToast("Deleted loved account!")
                     } else {
 //                        loved.let { love ->
 //                            love?. = DateHelper.getCurrentDate()
