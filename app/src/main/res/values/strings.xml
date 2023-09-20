@@ -15,4 +15,6 @@
     <string name="menu_settings">menu_settings</string>
     <string name="menu_love">menu_love</string>
     <string name="loved">loved</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="Light_mode">Light mode</string>
 </resources>
