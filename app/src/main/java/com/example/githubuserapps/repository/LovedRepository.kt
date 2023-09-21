@@ -19,6 +19,9 @@ class LovedRepository(application: Application) {
 
     fun getAllNotes(): LiveData<List<Loved>> = mLovedDao.getAllLoved()
 
+    fun getAllLovedByName(username: String) : LiveData<Loved> = mLovedDao.getAllLovedByName(username)
+
+
     fun insert(loved: Loved) {
         executorService.execute { mLovedDao.insert(loved) }
     }

@@ -17,4 +17,5 @@
     <string name="loved">loved</string>
     <string name="dark_mode">Dark mode</string>
     <string name="Light_mode">Light mode</string>
+    <string name="button_back">button back</string>
 </resources>

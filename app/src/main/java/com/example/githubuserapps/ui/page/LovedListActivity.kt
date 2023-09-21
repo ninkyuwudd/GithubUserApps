@@ -32,6 +32,10 @@ class LovedListActivity : AppCompatActivity() {
         binding?.rvLoved?.setHasFixedSize(true)
         binding?.rvLoved?.adapter = adapter
 
+        binding?.btnLovedBack?.setOnClickListener {
+            onBackPressed()
+        }
+
 
 //        binding?.fabAdd?.setOnClickListener {
 //            val intent = Intent(this@MainActivity, NoteAddUpdateActivity::class.java)

@@ -20,6 +20,9 @@ interface LovedDao {
     @Delete
     fun delete(loved: Loved)
 
-    @Query("SELECT * FROM loved")
+    @Query("SELECT * FROM loved ")
     fun getAllLoved() : LiveData<List<Loved>>
+
+    @Query("SELECT * FROM loved WHERE account_username = :username ")
+    fun getAllLovedByName(username : String) : LiveData<Loved>
 }

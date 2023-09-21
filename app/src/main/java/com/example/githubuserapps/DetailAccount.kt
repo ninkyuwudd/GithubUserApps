@@ -1,5 +1,6 @@
 package com.example.githubuserapps
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.viewpager2.widget.ViewPager2
@@ -20,20 +22,22 @@ import com.example.githubuserapps.ui.FollowViewModel
 import com.example.githubuserapps.ui.MainViewModel
 import com.example.githubuserapps.ui.SectionPagerAdapter
 import com.example.githubuserapps.ui.insert.LovedAddUpdateViewModel
+import com.example.githubuserapps.ui.page.LovedViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.squareup.picasso.Picasso
 
 class DetailAccount: AppCompatActivity(), View.OnClickListener {
 
+
+
     private var isEdit = false
     private var loved: Loved? = null
 
     private lateinit var lovedAddUpdateViewModel: LovedAddUpdateViewModel
 
-
     private lateinit var binding:ActivityDetailAccountBinding
-    private lateinit var backbtn : ImageView
+
 
     companion object {
         const val EXTRA_NOTE = "extra_note"
@@ -51,6 +55,7 @@ class DetailAccount: AppCompatActivity(), View.OnClickListener {
     }
 
     private lateinit var txt: TextView
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailAccountBinding.inflate(layoutInflater)
@@ -69,6 +74,7 @@ class DetailAccount: AppCompatActivity(), View.OnClickListener {
         viewPager.adapter = sectionPagerAdapter
 
         val tabs: TabLayout = findViewById(R.id.tabs)
+
         TabLayoutMediator(tabs,viewPager) {
             tab,position -> tab.text = resources.getString(TAB_TITLE[position])
         }.attach()
@@ -96,6 +102,7 @@ class DetailAccount: AppCompatActivity(), View.OnClickListener {
 
         lovedAddUpdateViewModel = obtainViewModel(this@DetailAccount)
 
+
         loved = intent.getParcelableExtra(EXTRA_NOTE)
 
         if (loved != null) {
@@ -104,39 +111,48 @@ class DetailAccount: AppCompatActivity(), View.OnClickListener {
             loved = Loved()
         }
 
-        val actionBarTitle: String
-        val btnTitle: String
+        lovedAddUpdateViewModel.getAllLovedByName(getName.toString()).observe(this, Observer {
+            lovedData ->
+            if(lovedData != null){
+                isEdit = true
+                Log.d("test flag 1","Loged data != null cuy")
+                binding.floatingLove.setImageResource(R.drawable.ic_favorite_fill)
+            }else{
+                loved = Loved()
+                Log.d("test flag 2","Loged data null cuy")
+                binding.floatingLove.setImageResource(R.drawable.ic_favorite_border)
+            }
+        })
 
 
-        if (isEdit) {
-            binding.floatingLove.setImageResource(R.drawable.ic_favorite_fill)
-        } else {
-            binding.floatingLove.setImageResource(R.drawable.ic_favorite_border)
-        }
+
+//        if (isEdit) {
+//            binding.floatingLove.setImageResource(R.drawable.ic_favorite_fill)
+//        } else {
+//            binding.floatingLove.setImageResource(R.drawable.ic_favorite_border)
+//        }
 
 
 
         binding.floatingLove.setOnClickListener{
-            val name = getName
-
-            val urlImg = getUrlImg
-
+//            val name = getName
+//            val urlImg = getUrlImg
 
                     loved.let { love ->
-                        love!!.account_username = name.toString()
-                        love.avatarImgUrl = urlImg
+                        love!!.account_username = getName.toString()
+                        love.avatarImgUrl = getUrlImg
                     }
                     if (isEdit) {
                         lovedAddUpdateViewModel.delete(loved as Loved)
                         showToast("Deleted loved account!")
+                        binding.floatingLove.setImageResource(R.drawable.ic_favorite_border)
                     } else {
-//                        loved.let { love ->
-//                            love?. = DateHelper.getCurrentDate()
-//                        }
                         lovedAddUpdateViewModel.insert(loved as Loved)
                         showToast("New Loved Account")
+                        binding.floatingLove.setImageResource(R.drawable.ic_favorite_fill)
                     }
-                    finish()
+                    isEdit = true
+//                    finish()
 
         }
 

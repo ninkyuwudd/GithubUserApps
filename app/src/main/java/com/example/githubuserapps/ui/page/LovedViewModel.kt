@@ -10,4 +10,6 @@ class LovedViewModel(application: Application): ViewModel() {
 
     private val mLovedRepository: LovedRepository = LovedRepository(application)
     fun getAllNotes(): LiveData<List<Loved>> = mLovedRepository.getAllNotes()
+
+    fun getAllLovedByUsername(username : String) : LiveData<Loved> =mLovedRepository.getAllLovedByName(username)
 }
