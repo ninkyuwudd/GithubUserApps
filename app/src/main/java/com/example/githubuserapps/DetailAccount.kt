@@ -41,8 +41,6 @@ class DetailAccount: AppCompatActivity(), View.OnClickListener {
 
     companion object {
         const val EXTRA_NOTE = "extra_note"
-        const val ALERT_DIALOG_CLOSE = 10
-        const val ALERT_DIALOG_DELETE = 20
 
         const val EXTRA_TITLE = "gizipp"
         const val EXTRA_IMG_ACCOUNT = "extra_img"
@@ -115,6 +113,7 @@ class DetailAccount: AppCompatActivity(), View.OnClickListener {
             lovedData ->
             if(lovedData != null){
                 isEdit = true
+                loved = Loved(lovedData.id,lovedData.account_username,lovedData.avatarImgUrl)
                 Log.d("test flag 1","Loged data != null cuy")
                 binding.floatingLove.setImageResource(R.drawable.ic_favorite_fill)
             }else{
@@ -125,18 +124,7 @@ class DetailAccount: AppCompatActivity(), View.OnClickListener {
         })
 
 
-
-//        if (isEdit) {
-//            binding.floatingLove.setImageResource(R.drawable.ic_favorite_fill)
-//        } else {
-//            binding.floatingLove.setImageResource(R.drawable.ic_favorite_border)
-//        }
-
-
-
         binding.floatingLove.setOnClickListener{
-//            val name = getName
-//            val urlImg = getUrlImg
 
                     loved.let { love ->
                         love!!.account_username = getName.toString()
@@ -145,6 +133,7 @@ class DetailAccount: AppCompatActivity(), View.OnClickListener {
                     if (isEdit) {
                         lovedAddUpdateViewModel.delete(loved as Loved)
                         showToast("Deleted loved account!")
+                        Log.d("test flag 1","mencoba hapus data cuy")
                         binding.floatingLove.setImageResource(R.drawable.ic_favorite_border)
                     } else {
                         lovedAddUpdateViewModel.insert(loved as Loved)

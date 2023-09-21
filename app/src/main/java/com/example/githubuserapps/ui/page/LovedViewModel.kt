@@ -9,7 +9,7 @@ import com.example.githubuserapps.repository.LovedRepository
 class LovedViewModel(application: Application): ViewModel() {
 
     private val mLovedRepository: LovedRepository = LovedRepository(application)
-    fun getAllNotes(): LiveData<List<Loved>> = mLovedRepository.getAllNotes()
+    fun getAllLoved(): LiveData<List<Loved>> = mLovedRepository.getAllLoved()
 
     fun getAllLovedByUsername(username : String) : LiveData<Loved> =mLovedRepository.getAllLovedByName(username)
 }

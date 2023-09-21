@@ -21,7 +21,7 @@ class LovedListActivity : AppCompatActivity() {
         setContentView(binding?.root)
 
         val lovedViewModel = obtainViewModel(this@LovedListActivity)
-        lovedViewModel.getAllNotes().observe(this) { lovedList ->
+        lovedViewModel.getAllLoved().observe(this) { lovedList ->
 
                 adapter.setListLoved(lovedList)
 
@@ -36,11 +36,6 @@ class LovedListActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-
-//        binding?.fabAdd?.setOnClickListener {
-//            val intent = Intent(this@MainActivity, NoteAddUpdateActivity::class.java)
-//            startActivity(intent)
-//        }
     }
 
 

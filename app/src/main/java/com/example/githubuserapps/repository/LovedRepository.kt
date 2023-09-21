@@ -17,7 +17,7 @@ class LovedRepository(application: Application) {
         mLovedDao = db.lovedDao()
     }
 
-    fun getAllNotes(): LiveData<List<Loved>> = mLovedDao.getAllLoved()
+    fun getAllLoved(): LiveData<List<Loved>> = mLovedDao.getAllLoved()
 
     fun getAllLovedByName(username: String) : LiveData<Loved> = mLovedDao.getAllLovedByName(username)
 
