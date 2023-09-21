@@ -40,7 +40,7 @@ class DetailAccount: AppCompatActivity(), View.OnClickListener {
 
 
     companion object {
-        const val EXTRA_NOTE = "extra_note"
+        const val EXTRA_LOVED = "extra_loved"
 
         const val EXTRA_TITLE = "gizipp"
         const val EXTRA_IMG_ACCOUNT = "extra_img"
@@ -101,7 +101,7 @@ class DetailAccount: AppCompatActivity(), View.OnClickListener {
         lovedAddUpdateViewModel = obtainViewModel(this@DetailAccount)
 
 
-        loved = intent.getParcelableExtra(EXTRA_NOTE)
+        loved = intent.getParcelableExtra(EXTRA_LOVED)
 
         if (loved != null) {
             isEdit = true

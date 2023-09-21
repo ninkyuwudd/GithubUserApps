@@ -18,4 +18,5 @@
     <string name="dark_mode">Dark mode</string>
     <string name="Light_mode">Light mode</string>
     <string name="button_back">button back</string>
+    <string name="settings">Settings</string>
 </resources>

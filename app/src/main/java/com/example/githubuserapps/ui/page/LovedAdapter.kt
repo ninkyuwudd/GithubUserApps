@@ -47,7 +47,7 @@ class LovedAdapter: RecyclerView.Adapter<LovedAdapter.LovedViewHolder>() {
                     val intent = Intent(ctx, DetailAccount::class.java)
                     intent.putExtra(DetailAccount.EXTRA_TITLE,loved.account_username)
                     intent.putExtra(DetailAccount.EXTRA_IMG_ACCOUNT,loved.avatarImgUrl)
-                    intent.putExtra(DetailAccount.EXTRA_NOTE,loved)
+                    intent.putExtra(DetailAccount.EXTRA_LOVED,loved)
                     ctx.startActivity(intent)
                 }
             }
