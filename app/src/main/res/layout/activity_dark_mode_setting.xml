@@ -44,16 +44,30 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    <Switch
-        android:id="@+id/dark_or_light"
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
-        android:text="@string/dark_mode"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        android:padding="10dp"
+        app:cardUseCompatPadding="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+        <Switch
+            android:padding="20dp"
+            android:id="@+id/dark_or_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dark_mode"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

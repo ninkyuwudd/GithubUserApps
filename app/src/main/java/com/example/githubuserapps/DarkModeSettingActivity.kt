@@ -8,13 +8,13 @@ import android.widget.Switch
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
+import com.example.githubuserapps.databinding.ActivitySearchMenuBinding
 import com.example.githubuserapps.factory.SettingViewModelFactory
 import com.example.githubuserapps.settings.SettingPreference
 import com.example.githubuserapps.settings.SettingViewModel
 import com.example.githubuserapps.settings.dataStore
 
 class DarkModeSettingActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,11 +28,14 @@ class DarkModeSettingActivity : AppCompatActivity() {
             SettingViewModel::class.java
         )
 
+
+
         settingsViewModel.ThemeSettingGets().observe(this){
             dackModeActive: Boolean ->
             if(dackModeActive){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 themeSwitcher.text = "Dark mode"
+
                 themeSwitcher.isChecked = true
             }
             else {
